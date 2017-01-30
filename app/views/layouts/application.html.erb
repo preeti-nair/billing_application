@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--RezonanceSchedulingAssistance -->
+        <title>Demo App</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+        <!--  Navigation Section -->
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#"><!--Rezonance Creations--> Sanchetic Pathology Lab</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="<%= select_schedules_path("today") %>">Dashboard</a></li>
+                    <li><a href="<%= clients_path %>">Clients</a></li>
+                    <li><a href="<%= employees_path %>">Employees</a></li>
+                    <li><a href="<%= all_events_path %>">Events</a></li>
+                     
+                      
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <% if user_signed_in? %>
+                      <li><a href="<%= edit_user_registration_path %>" title="Edit Profile"><span class="glyphicon glyphicon-user"></span>Logged in as <%= current_user.email %></a></li>
+                      <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+                    <% else %>
+                      <li><a href="<%= new_user_registration_path %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                      <li><a href="<%= new_user_session_path %>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <% end %>
+
+                </ul>
+            </div>
+        </nav>
+        <!-- End of navigation section -->
+        <!-- Yield Container for .html.erb -->
+
+        <div id="main-container">
+            <%= yield %>
+        </div>    
+        <!-- End of field Container for .html.erb -->
+
+    </body>
+</html>

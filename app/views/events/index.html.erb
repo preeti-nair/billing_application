@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<ul class="nav navbar-nav">
+    <li><%= link_to 'View All Events', all_events_path %></li>
+    <li><%= link_to 'Generate New Bill', generate_event_bill_path %></li>
+    <li>
+      <%= form_tag all_events_path, :method => 'get', style: "padding-top : 13px" do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search Event", :name => nil %>
+        </p>
+      <% end %>
+    </li>
+</ul>
+<br /><br />
+<h1>Listing Events</h1>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Bill To</th>
+      <th>Invoice No</th>
+      <th>Invoice Date</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= link_to event.bill_to_name, view_event_details_path(event) %></td>
+        <td><%= event.invoice_no %></td>
+        <td><%= event.invoice_date.strftime("%dth %B, %Y") %></td>
+        <td><%= "Rs. #{event.total}/-"%></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>

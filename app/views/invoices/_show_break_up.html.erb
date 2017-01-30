@@ -1,0 +1,10 @@
+<%#
+# To change this license header, choose License Headers in Project Properties.
+# To change this template file, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<% @break_up %>
+<% get_viewable_break_up_hash.each do |data, value| %>
+  <p><%= data %> : <%= value %></p>
+<% end %>

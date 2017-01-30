@@ -1,0 +1,46 @@
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :emp_id %><br>
+    <%= f.number_field :emp_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_no %><br>
+    <%= f.number_field :contact_no %>
+  </div>
+  <div class="field">
+    <%= f.label :email_address %><br>
+    <%#= f.text_field :email_address, readonly: true %>
+    <%= f.select :email_address, options_for_select(User.select(:email).collect {|p| [ p.email, p.email ] })%>
+  </div>
+  <div class="field">
+    <%= f.label :identity_document %><br>
+    <%= f.select :identity_document, options_for_select(IDENTITY_DOCUMENTS_LIST)%>
+  </div>
+  <div class="field">
+    <%= f.label :identity_number %><br>
+    <%= f.text_field :identity_number %>
+  </div>
+<div class="field">
+    <%= label_tag "Role" %><br>
+    <%= check_box_tag :admin %> Admin
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+    <strong>Invoice No</strong>
+    <%= @event.invoice_no %>
+</p>
+<p>
+    <strong>Name</strong>
+    <%= @event.bill_to_name %>
+</p>
+<p>
+    <strong>Address</strong>
+    <%= @event.bill_to_address %>
+</p>
+<p>
+    <strong>Particulars</strong>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Particulars</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @event.particulars.each do |particular, amount| %>
+        <tr>
+          <td><%= raw display_particulars particular %></td>
+          <td><%= amount %></td>
+        </tr>
+        <% end %>
+        
+    </tbody>
+</table>
+</p>
+<p>
+    <strong>Tax</strong>
+    <%#= @event.tax ? @event.tax : "Not applied" %>
+    <% if @event.tax %>
+      <ul>
+      <%  @event.tax.each do |key, value| %>
+        <li><%= key %> --- <%= value %></li>
+      <% end %>
+      </ul>
+    <% else %>
+      "Not applied" 
+    <%  end %>
+</p>
+<p>
+    <strong>Total</strong>
+    <%= @event.total %>
+</p>
+
+
+<%= link_to 'Back', all_events_path %> |
+<%= link_to 'View Printable Bill', create_individual_event_bill_path(@event, :format => 'pdf'), target: "_blank" %>

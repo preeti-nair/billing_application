@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bill_to: MyString
+  invoice_date: 2016-12-23 13:55:13
+  invoice_no: MyString
+  particulars: 
+  tax: 
+  total: 1
+
+two:
+  bill_to: MyString
+  invoice_date: 2016-12-23 13:55:13
+  invoice_no: MyString
+  particulars: 
+  tax: 
+  total: 1

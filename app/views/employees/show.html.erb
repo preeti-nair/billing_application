@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Emp:</strong>
+  <%= @employee.emp_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @employee.name %>
+</p>
+
+<p>
+  <strong>Contact no:</strong>
+  <%= @employee.contact_no %>
+</p>
+
+<p>
+  <strong>Email address:</strong>
+  <%= @employee.email_address %>
+</p>
+
+<p>
+  <strong>Identity document:</strong>
+  <%= @employee.identity_document %>
+</p>
+
+<p>
+  <strong>Identity number:</strong>
+  <%= @employee.identity_number %>
+</p>
+<% if can? :update, @employee %>
+  <%= link_to 'Edit', edit_employee_path(@employee) %> |
+<% end %>
+<%= link_to 'Back', employees_path %>

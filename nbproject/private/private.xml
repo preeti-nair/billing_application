@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/rezonance_scheduling_assistance/config/routes.rb</file>
+            <file>file:/D:/rezonance_scheduling_assistance/app/views/layouts/application.html.erb</file>
+            <file>file:/D:/rezonance_scheduling_assistance/app/views/welcome/index.html.erb</file>
+            <file>file:/D:/rezonance_scheduling_assistance/app/models/client.rb</file>
+            <file>file:/D:/rezonance_scheduling_assistance/app/assets/javascripts/application.js</file>
+            <file>file:/D:/rezonance_scheduling_assistance/app/controllers/welcome_controller.rb</file>
+            <file>file:/D:/rezonance_scheduling_assistance/app/helpers/clients_helper.rb</file>
+            <file>file:/D:/rezonance_scheduling_assistance/config/initializers/chartkick.rb</file>
+        </group>
+    </open-files>
+</project-private>

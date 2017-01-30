@@ -1,0 +1,4 @@
+alert("Schedule started for " + "<%= @client.name%>");
+jQuery(<%="client_links_container_#{@client.id}" %>).html("<%= j render partial: 'clients/client_links', locals: { client: @client} %>");
+jQuery(<%= "started_at_cell_#{@client.id}" %>).html("<%= @schedule.start_time%>");
+

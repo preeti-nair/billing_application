@@ -1,0 +1,28 @@
+<% if client.is_active %>
+	<%= link_to 'Stop Schedule', stop_schedule_path(client), remote: true %> | 
+<% else %>
+	<%= link_to 'Start Schedule', start_schedule_path(client), remote: true %> | 
+<% end %>
+<% if !client.is_active && client.schedules %>
+<% rate_value = client.categories.first.rate.value %>
+	<%= link_to 'Generate Bill', generate_bill_path(client,rate_value, :format => 'pdf'), id: "generate_bill_#{client.id}", onclick: "javascript:getRateConfirmation(event);" , target: "_blank", data: { confirm: 'Continue bill generation?' }, target: "_blank"%>
+	<%#= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<script type="text/javascript">
+function getRate(){
+	 var retVal = prompt("Enter the rate.", "Rate in numbers");
+	 var client_id = "<%= client.id%>";
+	 jQuery("a[id='generate_bill_" + client_id + "']").attr('href',"/client/"+client_id+"/generate_bill/"+ retVal + ".pdf");
+}
+function getRateConfirmation(){
+               var retVal = confirm("Do you want to change rates per hour for this session?");
+               if( retVal == true ){
+                  getRate();
+                  return true;
+               }
+               else{
+                  return false;
+               }
+            }
+</script>

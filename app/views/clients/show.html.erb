@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @client.name %>
+</p>
+
+<p>
+  <strong>Contact no:</strong>
+  <%= @client.contact_no %>
+</p>
+
+<p>
+  <strong>Email address:</strong>
+  <%= @client.email_address %>
+</p>
+
+<p>
+  <strong>Project name:</strong>
+  <%= @client.project_name %>
+</p>
+
+<p>
+  <strong>Expected Schedule</strong>
+  <%= @client.expected_schedule.strftime("%d %B, %y - %H:%M") %>
+</p>
+
+<p>
+  <strong>Identity document:</strong>
+  <%= @client.identity_document %>
+</p>
+
+<p>
+  <strong>Identity number:</strong>
+  <%= @client.identity_number %>
+</p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @client.employee.name %>
+</p>
+
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>
+<div id=<%= "client_links_container_#{@client.id}" %>>
+  <%= render partial: 'client_links', locals: { client: @client} %>
+</div>

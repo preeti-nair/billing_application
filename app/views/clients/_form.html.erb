@@ -1,0 +1,55 @@
+<%= form_for(@client) do |f| %>
+  <% if @client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% @client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_no %><br>
+    <%= f.number_field :contact_no %>
+  </div>
+  <div class="field">
+    <%= f.label :email_address %><br>
+    <%= f.text_field :email_address %>
+  </div>
+  <div class="field">
+    <%= f.label :project_name %><br>
+    <%= f.text_field :project_name %>
+  </div>
+<div class="field">
+    <%= f.label :expected_schedule %><br>
+    <%= f.date_select :expected_schedule, value: Time.now %>
+    <%= f.time_select :expected_schedule %>
+    
+  </div>
+  <div class="field">
+    <%= f.label :identity_document %><br>
+    <%= f.select :identity_document, options_for_select(IDENTITY_DOCUMENTS_LIST)%>
+  </div>
+  <div class="field">
+    <%= f.label :identity_number %><br>
+    <%= f.text_field :identity_number %>
+  </div>
+  <div class="field">
+    <%= f.label :employee_id %><br>
+    <%= f.select :employee_id, options_from_collection_for_select(get_employees, 'id', 'name') %>
+  </div>
+  <div class="field">
+    <%= f.label :category_ids %><br>
+    <%= f.collection_check_boxes(:category_ids, get_categories, :id, :name)%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+<ul class="nav navbar-nav">
+    <li><%= link_to 'View All Clients', clients_path %></li>
+    <li><%= link_to 'Create New Client', new_client_path %></li>
+    <li>
+      <%= form_tag clients_path, :method => 'get', style: "padding-top : 13px" do %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search Client", :name => nil %>
+        </p>
+      <% end %>
+    </li>
+</ul>
+
+<br /><br />
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Contact no</th>
+      <th>Email address</th>
+      <th>Project name</th>
+      <th>Identity document</th>
+      <th>Identity number</th>
+      <th>Expected Schedule</th>
+      <th>Employee</th>
+      <th>Started At</th>
+      <th>Ended At</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= link_to client.name, view_details_path(client) %></td>
+        <td><%= client.contact_no %></td>
+        <td><%= client.email_address %></td>
+        <td><%= client.project_name %></td>
+        <td><%= client.identity_document %></td>
+        <td><%= client.identity_number %></td>
+        <td><%= client.expected_schedule.strftime("%d %B, %y - %H:%M") %></td>
+        <td><%= client.employee.name %></td>
+        <td id=<%= "started_at_cell_#{client.id}" %>>
+          <%= client.is_active ? get_local_time(client.schedules.last.start_time): "Not started"%>
+          
+        </td>
+        <td id=<%= "ended_at_cell_#{client.id}" %>>
+          <%= client.is_active ? client.schedules.last.end_time ? get_local_time(client.schedules.first.end_time) : "Session in progress" : "Not Started"%>
+        </td>
+        <% if current_user %>
+          <td><%= link_to 'Edit', edit_client_path(client), target: "_blank" %></td>
+          <!-- <td><%#= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+          <td id=<%= "client_links_container_#{client.id}" %>>
+            <%= render partial: 'client_links', locals: { client: client}%>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @clients %>

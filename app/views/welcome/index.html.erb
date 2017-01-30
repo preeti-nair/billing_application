@@ -1,0 +1,84 @@
+<% if current_user and current_user.admin? %>
+  <%= link_to "Complete User registeration", new_employee_path %>  
+<% end %>
+      <!-- Carousel Section -->
+       <!-- <div id="carousel-example" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example" data-slide-to="1"></li>
+                <li data-target="#carousel-example" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="#"><img src="http://placekitten.com/1600/600" /></a>
+                    <div class="carousel-caption">
+                        <h3>Meow</h3>
+                        <p>Just Kitten Around</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="http://placekitten.com/1600/600" /></a>
+                    <div class="carousel-caption">
+                        <h3>Meow</h3>
+                        <p>Just Kitten Around</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="http://placekitten.com/1600/600" /></a>
+                    <div class="carousel-caption">
+                        <h3>Meow</h3>
+                        <p>Just Kitten Around</p>
+                    </div>
+                </div>
+            </div>
+
+            <a class="left carousel-control" href="#carousel-example" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div> -->
+        <!-- End of carousel -->
+
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Schedules Chart </h3>
+      <%=column_chart Client.bookings(params[:selector]).group("date(expected_schedule)").count , label: "Schedules" %>
+      <%= pie_chart Client.group(:name).count %>
+  </div>
+  <div class="col-sm-6">
+    <div class="row">
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Today", select_schedules_path("today")%></li>
+          <li><%= link_to 'Current week', select_schedules_path("week") %></li>
+          <li><%= link_to 'Current month', select_schedules_path("month") %></li>
+          <li><%= link_to 'All schedules',  welcome_index_path %></li>
+        </ul>
+    </div>
+    <div class="row">
+      <% selector = get_table_header_selector params[:selector]%>  
+      <h3><%= "#{selector}" %></h3>
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>Time</th>
+              </tr>
+          </thead>
+
+          <tbody>
+              <% @bookings.each do |client| %>
+                <tr>
+                    <td><%= link_to client.name, view_details_path(client) %></td>
+                    <td><%= client.expected_schedule.strftime("%d %B, %y") %></td>
+                    <td><%= client.expected_schedule.strftime("%H:%M") %></td>
+                </tr>
+              <% end %>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>   
